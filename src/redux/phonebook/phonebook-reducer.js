@@ -1,4 +1,4 @@
-import { createReducer } from '@reduxjs/toolkit';
+import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import phonebookActions from './phonebook-actions'
 const { addContactError,
     addContactRequest,
@@ -44,7 +44,7 @@ export const errorReducer = createReducer(false, {
     [deleteContactSucces]: () => false,
     [deleteContactRequest]: () => false,
     [fetchContactsError]: (state, { payload }) => payload,
-    [fetchContactsRequest]: () => true,
+    [fetchContactsRequest]: () => false,
     [fetchContactsSucces]: () => false,
 })
 
@@ -69,3 +69,11 @@ export const filterReducer = createReducer(initialState.filter, {
 //             return state;
 //     }
 // }
+const phonebookReducer = combineReducers({
+    contacts: contactReducer,
+    filter: filterReducer,
+    error: errorReducer,
+    loading: requesReducer,
+})
+
+export default phonebookReducer;

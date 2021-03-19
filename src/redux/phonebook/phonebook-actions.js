@@ -1,6 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import axios from 'axios';
-axios.defaults.baseURL = 'http://localhost:4040/';
+
 
 const addContactSucces = createAction('phoneBook/addContactSucces');
 const addContactError = createAction('phoneBook/addContactError');

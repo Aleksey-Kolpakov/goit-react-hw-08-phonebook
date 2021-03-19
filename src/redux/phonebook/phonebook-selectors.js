@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
 
-const getContacts = state => state.contacts;
-const getFilter = state => state.filter;
-const getError = state => state.error;
-const getLoading = state => state.loading;
+const getContacts = state => state.phonebook.contacts;
+const getFilter = state => state.phonebook.filter;
+const getError = state => state.phonebook.error;
+const getLoading = state => state.phonebook.loading;
 
 const getVisibleContacts = createSelector([getContacts, getFilter],
     (contacts, filter) => contacts.filter(({ name }) => {

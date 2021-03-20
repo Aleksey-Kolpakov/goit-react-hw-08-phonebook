@@ -55,3 +55,5 @@ const getLogout = () => dispatch => {
     })
     .catch(error => dispatch(actions.logoutError(error)));
 };
+
+export default{getRegister,getLogin,getUserData,getLogout}

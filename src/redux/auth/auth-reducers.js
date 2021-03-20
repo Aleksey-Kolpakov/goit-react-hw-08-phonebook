@@ -15,8 +15,8 @@ const { registerSuccess,
     getUserError, } = authActions
 
 const user = createReducer(initialState, {
-    [registerSuccess]: (state, { payload }) => payload,
-    [loginSuccess]: (state, { payload }) => payload,
+    [registerSuccess]: (state, { payload }) => payload.user,
+    [loginSuccess]: (state, { payload }) => payload.user,
     [getUserSuccess]: (state, { payload }) => payload,
     [logoutSuccess]: () => initialState,
 })
@@ -33,8 +33,8 @@ const isAuthorized = createReducer(false, {
 })
 
 const token = createReducer(null, {
-    [registerSuccess]: (_, { payload }) => payload,
-    [loginSuccess]: (_, { payload }) => payload,
+    [registerSuccess]: (_, { payload }) => payload.token,
+    [loginSuccess]: (_, { payload }) => payload.token,
     [logoutSuccess]: () => null,
 })
 

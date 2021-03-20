@@ -21,4 +21,10 @@ const fetchContacts = () => dispatch => {
         .then(({ data }) => dispatch(actions.fetchContactsSucces(data)))
         .catch(error => dispatch(actions.fetchContactsError(error)))
 }
+const updateContact = id => dispatch => {
+    dispatch(actions.deleteContactRequest());
+    axios.patch(`/contacts/${id}`)
+        .then(({data}) => dispatch(actions.updateContactSucces(data)))
+        .catch(error => dispatch(actions.updateContactError(error)))
+}
 export default { addContact, deleteContact, fetchContacts }

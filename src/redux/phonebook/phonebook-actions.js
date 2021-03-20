@@ -1,9 +1,8 @@
 import { createAction } from '@reduxjs/toolkit';
 
-
 const addContactSucces = createAction('phoneBook/addContactSucces');
 const addContactError = createAction('phoneBook/addContactError');
-const addContactRequest = createAction('phoneBook/addContactRequest')
+const addContactRequest = createAction('phoneBook/addContactRequest');
 
 //const addContact = createAction('phonebook/addContact');
 // const addContact = contact => ({
@@ -23,21 +22,28 @@ const fetchContactsRequest = createAction('phoneBook/fetchContactsRequest');
 const fetchContactsSucces = createAction('phoneBook/fetchContactsSucces');
 const fetchContactsError = createAction('phoneBook/fetchContactsError');
 
-const changeFilter = createAction('phonebook/change-filter');
+const updateContactRequest = createAction('phoneBook/updateContactRequest');
+const updateContactSucces = createAction('phoneBook/updateContactSucces');
+const updateContactError = createAction('phoneBook/updateContactError');
+
+const changeFilter = createAction('phoneBook/change-filter');
 // const changeFilter = value => ({
 //     type: actionTypes.CHANGE_FILTER,
 //     payload: value
 // })
 
 export default {
-    changeFilter,
-    addContactSucces,
-    addContactError,
-    addContactRequest,
-    deleteContactSucces,
-    deleteContactError,
-    deleteContactRequest,
-    fetchContactsRequest,
-    fetchContactsSucces,
-    fetchContactsError
-}
+  changeFilter,
+  addContactSucces,
+  addContactError,
+  addContactRequest,
+  deleteContactSucces,
+  deleteContactError,
+  deleteContactRequest,
+  fetchContactsRequest,
+  fetchContactsSucces,
+  fetchContactsError,
+  updateContactRequest,
+  updateContactSucces,
+  updateContactError,
+};

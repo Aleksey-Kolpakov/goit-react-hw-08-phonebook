@@ -1,13 +1,16 @@
 import React from 'react';
-
-const UserMenu = () => {
+import { connect} from 'react-redux';
+import authOperations from '../../redux/auth/auth-operations'
+const UserMenu = ({logoutUser}) => {
     return (
         <div>
             User email
-            <button>Выйти</button>
+            <button onClick={logoutUser}>Выйти</button>
 
         </div>
     );
 };
-
-export default UserMenu;
+const mapDispatchToProps = dispatch => ({
+  logoutUser: () => dispatch(authOperations.getLogout()),
+});
+export default connect(null,mapDispatchToProps)(UserMenu);

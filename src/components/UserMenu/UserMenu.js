@@ -7,7 +7,7 @@ const UserMenu = ({ logoutUser, user }) => {
     return (
         <div className={styles.userMenu}>
             <p>{user.email}</p>
-            <button onClick={logoutUser}>Выйти</button>
+            <button className={styles.button} onClick={logoutUser}>Выйти</button>
 
         </div>
     );

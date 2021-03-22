@@ -38,7 +38,10 @@ const getLogin = user => dispatch => {
     })
     .catch(error => dispatch(actions.loginError(error)));
 };
-const getUserData = () => dispatch => {
+const getUserData = () => (dispatch, getState) => {
+  const persistedToken = getState().auth.token;
+  if (!persistedToken) { return; }
+  token.set(persistedToken);
   dispatch(actions.getUserRequest());
   axios
     .get('/users/current')
@@ -56,4 +59,4 @@ const getLogout = () => dispatch => {
     .catch(error => dispatch(actions.logoutError(error)));
 };
 
-export default{getRegister,getLogin,getUserData,getLogout}
+export default { getRegister, getLogin, getUserData, getLogout }

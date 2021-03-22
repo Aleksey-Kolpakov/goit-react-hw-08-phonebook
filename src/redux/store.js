@@ -12,7 +12,7 @@ import {
     PURGE,
     REGISTER,
 } from 'redux-persist'
-
+import storage from 'redux-persist/lib/storage'
 const defaultmiddleware = getDefaultMiddleware({
     serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
@@ -20,19 +20,23 @@ const defaultmiddleware = getDefaultMiddleware({
 });
 
 const middleware = [...defaultmiddleware, logger]
+
+const authPersistConfig = {
+    key: 'auth',
+    storage,
+    whitelist: ['token'],
+}
+const authPersistedReducer=persistReducer(authPersistConfig, authReducer);
+// const store = createStore(rootReducer, composeWithDevTools());
 const rootReducer = combineReducers({
-auth:authReducer,
-phonebook:phonebookReducer
+    auth: authPersistedReducer,
+    phonebook: phonebookReducer
 
 })
-
-// const persistedReducer=persistReducer(persistConfig, rootReducer);
-// const store = createStore(rootReducer, composeWithDevTools());
 const store = configureStore({
     reducer: rootReducer,
     devTools: process.env.NODE_ENV === 'development', /// devtools only in developmetn
     middleware,
 })
-// const persistor = persistStore(store)
-// export default { store, persistor };
-export default store;
+const persistor = persistStore(store)
+export default { store, persistor };

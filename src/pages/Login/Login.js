@@ -90,6 +90,5 @@ const mapDispatchToProps = dispatch => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
 
 Login.propTypes = {
-  contacts: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  addContactToState: PropTypes.func.isRequired,
+  loginUser: PropTypes.func.isRequired,
 };

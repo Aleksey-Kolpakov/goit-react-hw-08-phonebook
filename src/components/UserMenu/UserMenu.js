@@ -1,16 +1,25 @@
 import React from 'react';
-import { connect} from 'react-redux';
+import { connect } from 'react-redux';
 import authOperations from '../../redux/auth/auth-operations'
-const UserMenu = ({logoutUser}) => {
+import authSelectors from '../../redux/auth/auth-selectors'
+import styles from './UserMenu.module.css'
+const UserMenu = ({ logoutUser, user }) => {
     return (
-        <div>
-            User email
+        <div className={styles.userMenu}>
+            <p>{user.email}</p>
             <button onClick={logoutUser}>Выйти</button>
 
         </div>
     );
 };
+
+const mapStateToProps = state => {
+    return ({
+        user: authSelectors.getUser(state),
+    })
+}
+
 const mapDispatchToProps = dispatch => ({
-  logoutUser: () => dispatch(authOperations.getLogout()),
+    logoutUser: () => dispatch(authOperations.getLogout()),
 });
-export default connect(null,mapDispatchToProps)(UserMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(UserMenu);

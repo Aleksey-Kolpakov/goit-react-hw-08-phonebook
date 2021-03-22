@@ -1,14 +1,23 @@
-import React, { Suspense, lazy } from 'react';
-import { Route, Switch,Redirect } from 'react-router-dom';
+import React, { Suspense, lazy, useEffect } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
 import Loader from 'react-loader-spinner';
 import Header from './components/Header/Header';
+import authOperations from './redux/auth/auth-operations'
 import routes from './routes';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute'
 const Login = lazy(() => import('./pages/Login/Login' /* webpackChunkName: "login-page" */));
 const Contacts = lazy(() => import('./pages/Contacts/Contacts' /* webpackChunkName: "contacts-page" */));
 const Register = lazy(() => import('./pages/Register/Register' /* webpackChunkName: "register-page" */));
 const HomePage = lazy(() => import('./pages/HomePage/HomePage' /* webpackChunkName: "home-page" */));
 
 const App = () => {
+  const dispatch = useDispatch();
+  const getCurrentUser = () => dispatch(authOperations.getUserData())
+  useEffect(() => {
+    getCurrentUser()
+  }, [])
   return (
     <>
       <Header />
@@ -18,10 +27,10 @@ const App = () => {
         }
       >
         <Switch>
-          <Route exact path={routes.home} component={HomePage} />
-          <Route path={routes.login} component={Login} />
-          <Route path={routes.register} component={Register} />
-          <Route path={routes.contacts} component={Contacts} />
+          <PublicRoute exact path={routes.home} redirectTo={routes.contacts} component={HomePage} />
+          <PublicRoute path={routes.login} restricted redirectTo={routes.contacts} component={Login} />
+          <PublicRoute path={routes.register} restricted redirectTo={routes.contacts} component={Register} />
+          <PrivateRoute path={routes.contacts} redirectTo={routes.login} component={Contacts} />
         </Switch>
       </Suspense>
     </>

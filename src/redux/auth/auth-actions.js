@@ -12,9 +12,9 @@ const logoutSuccess = createAction('auth/logoutSuccess');
 const logoutRequest = createAction('auth/logoutRequest');
 const logoutError = createAction('auth/logoutError');
 
-const getUserSuccess = createAction('auth/logoutSuccess');
-const getUserRequest = createAction('auth/logoutRequest');
-const getUserError = createAction('auth/logoutError');
+const getUserSuccess = createAction('auth/getUserSuccess');
+const getUserRequest = createAction('auth/getUserRequest');
+const getUserError = createAction('auth/getUserError');
 
 export default {
     registerSuccess,

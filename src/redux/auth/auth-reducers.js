@@ -57,16 +57,16 @@ const loading = createReducer(false, {
 const error = createReducer(false, {
   [registerSuccess]: () => false,
   [registerRequest]: () => false,
-  [registerError]: (_, { payload }) => payload,
+  [registerError]: (_, { payload }) => payload.message,
   [loginSuccess]: () => false,
   [loginRequest]: () => false,
-  [loginError]: (_, { payload }) => payload,
+  [loginError]: (_, { payload }) => payload.message,
   [logoutSuccess]: () => false,
   [logoutRequest]: () => false,
-  [logoutError]: (_, { payload }) => payload,
+  [logoutError]: (_, { payload }) => payload.message,
   [getUserSuccess]: () => false,
   [getUserRequest]: () => false,
-  [getUserError]: (_, { payload }) => payload,
+  [getUserError]: (_, { payload }) => payload.message,
 });
 const authReducer = combineReducers({
   user,

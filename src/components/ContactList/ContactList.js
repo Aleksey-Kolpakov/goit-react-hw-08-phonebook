@@ -7,7 +7,7 @@ import phonebookOperations from '../../redux/phonebook/phonebook-operations'
 import phonebookSelectors from '../../redux/phonebook/phonebook-selectors'
 const ContactList = ({ visibleContacts, deleteContact, fetchContacts }) => {
     useEffect(() => {
-        // fetchContacts();
+        fetchContacts();
     }, [fetchContacts])
     return (
         <ul className={styles.list}>

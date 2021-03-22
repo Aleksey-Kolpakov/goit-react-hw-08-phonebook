@@ -3,17 +3,28 @@ import { NavLink } from 'react-router-dom';
 import routes from '../../routes';
 import UserMenu from '../UserMenu/UserMenu';
 import styles from './Header.module.css'
-const Header = () => {
+import { connect } from 'react-redux'
+import authSelectors from '../../redux/auth/auth-selectors'
+import LoginBar from '../LoginBar/LoginBar';
+import authActions from '../../redux/auth/auth-actions';
+const Header = ({ IsAuthorized }) => {
+
     return (
         <header>
             <NavLink className={styles.NavLink} exact to={routes.home}>Home</NavLink>
-            <NavLink className={styles.NavLink} to={routes.contacts}>COntacts</NavLink>
-            <NavLink className={styles.NavLink} to={routes.login}>Login</NavLink>
-            <NavLink className={styles.NavLink} to={routes.register}>Registration</NavLink>
+            {IsAuthorized && <NavLink className={styles.NavLink} to={routes.contacts}>Contacts</NavLink>}
 
-            <UserMenu />
+            {!IsAuthorized && <LoginBar />}
+            {IsAuthorized && <UserMenu />}
         </header>
     );
 };
+const mapStateToProps = state => {
 
-export default Header;
+    return ({
+        IsAuthorized: authSelectors.getIsAuthorized(state),
+      
+    })
+}
+
+export default connect(mapStateToProps)(Header);

@@ -19,14 +19,14 @@ const defaultmiddleware = getDefaultMiddleware({
     },
 });
 
-const middleware = [...defaultmiddleware, logger]
+const middleware = [...defaultmiddleware]
 
 const authPersistConfig = {
     key: 'auth',
     storage,
     whitelist: ['token'],
 }
-const authPersistedReducer=persistReducer(authPersistConfig, authReducer);
+const authPersistedReducer = persistReducer(authPersistConfig, authReducer);
 // const store = createStore(rootReducer, composeWithDevTools());
 const rootReducer = combineReducers({
     auth: authPersistedReducer,

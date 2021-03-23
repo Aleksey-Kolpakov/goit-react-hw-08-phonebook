@@ -5,6 +5,8 @@ import styles from './Register.module.css';
 import authOperations from '../../redux/auth/auth-operations';
 import authSelectors from '../../redux/auth/auth-selectors';
 import Loader from 'react-loader-spinner'
+
+
 class Register extends Component {
   state = {
     name: '',
